@@ -1,0 +1,41 @@
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+  background-position: center; /* Centra la imagen en el medio del body */
+  background-attachment: fixed; /* La imagen de fondo permanece fija cuando se hace scroll */
+  margin: 0; /* Eliminar márgenes predeterminados */
+  min-height: 100vh; /* Permite que el body crezca según el contenido */
+  display: flex; /* Hacemos que el body actúe como un contenedor flex */
+  flex-direction: column; /* Asegura que el contenido esté en una columna */
+  justify-content: center; /* Centra el contenido verticalmente cuando el contenido es pequeño */
+  align-items: center; /* Centra el contenido horizontalmente */
+  padding: 20px; /* Añade algo de espacio para que no se pegue a los bordes */
+  box-sizing: border-box; /* Incluye el padding en el tamaño total del body */
+  position: relative; /* Necesario para que el pseudo-elemento se posicione correctamente */
+}
+
+body::before {
+  content: ''; /* Necesario para que el pseudo-elemento se muestre */
+  position: absolute; /* Posicionamos el pseudo-elemento en el body */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.661); /* Capa blanca semitransparente */
+  z-index: -1; /* Coloca la capa debajo del contenido */
+  background-image: url('../assets/abstract-5387368_1280.jpg'); /* Ruta de la imagen */
+  opacity: 0.5; /* Ajusta la opacidad de la imagen */
+  background-size: cover;
+}
+
+
+
+

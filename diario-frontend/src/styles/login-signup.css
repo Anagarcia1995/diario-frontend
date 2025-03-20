@@ -1,0 +1,65 @@
+/* LOGIN + SIGNUP*/
+
+.login-top {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    font-style: normal;
+    color: #706b6b;
+    display: flex;
+  }
+  
+  form  {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 0px;
+    width: 280px;
+    height: 430px;
+    position: relative;
+  
+  }
+  
+  form input {
+    height: 40px;
+    outline: none;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    color: rgba(0, 0, 0, 0.773);
+    background-color: #f9f9f9;  /* Agregar fondo para todos los inputs */
+  }
+  
+  form input[type="button"] {
+    background-color: #3d2666;
+    color: #ffffff;
+    font-size: 17px;
+    cursor: pointer;
+  }
+  
+  form input[type="button"]:hover {
+    background-color: rgba(58, 58, 187, 0.636)
+  }
+  
+  form span {
+    text-align: center;
+    font-size: 16px;
+    padding-top: 10px;
+    color: #706b6b;
+  }
+  
+  form span a {
+    text-decoration: none;
+    color: #3d2666;
+    font-weight: 500;
+    
+  }
+  
+  .login-text {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%; /* Si quieres que ocupe todo el ancho */
+  }

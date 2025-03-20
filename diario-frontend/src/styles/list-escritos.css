@@ -1,0 +1,83 @@
+
+
+
+.form-list {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #706b6b;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    width: 700px;
+  }
+  
+  .h2list, .h4list {
+    color: #333;
+    margin: 0;
+  }
+  
+  .h2list {
+    font-size: 28px;
+  }
+  
+  .h4list {
+    font-size: 19px;
+    color: #555;
+    margin-bottom: 15px;
+    margin-left: 3px;
+    font-style: italic; /* Poner el texto en cursiva */
+  
+  }
+  
+  .form-item {
+    background-color: #ffffff; /* Fondo blanco para cada ítem */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc; /* Borde alrededor de cada escrito */
+    margin-bottom: 20px; /* Espaciado entre cada contenedor de escrito */
+  }
+  
+  .ullist {
+    padding: 0;
+    margin: 0;
+    margin-left: 22px;
+    
+  }
+  
+  .ullist li {
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 16px;
+    
+  }
+  
+  
+  .form-btn {
+    background-color:#3d2666;
+    color: #ffffff;
+    font-size: 17px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 120px;
+    text-align: center;
+  }
+  
+  .form-btn:hover {
+    background-color:#7654af;
+  }
+  
+  
+  
+  .loading-text {
+    font-size: 18px;
+    color: #888;
+    text-align: center;
+  }
+  

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const SignupFormComponent = () => {
+import '../styles/global.css'; 
+const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSignup = async () => {
@@ -23,13 +22,13 @@ const SignupFormComponent = () => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('token_refresh', data.token_refresh);
         localStorage.setItem('idUser', data.user._id);
-        navigate('/home');
+        navigate('/list-escritos');
       } else {
-        setError(data.message || 'Error al crear la cuenta. Intenta nuevamente.');
+        alert(data.message || 'Error al crear la cuenta. Intenta nuevamente.');
       }
     } catch (err) {
       console.error('Error durante el registro:', err);
-      setError('Hubo un error al intentar registrarte');
+      alert('Hubo un error al intentar registrarte');
     }
   };
 
@@ -38,37 +37,28 @@ const SignupFormComponent = () => {
   };
 
   return (
-    <div>
-      <h1>Diario</h1>
-      <h2>Regístrate</h2>
-      <div>
-        <span>Nombre</span>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+    <div className="login">
+      <div className="header">
+        <h4 className='login-top'>Bienvenido.</h4>
       </div>
-      <div>
-        <span>Apellidos</span>
-        <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-      </div>
-      <div>
-        <span>Foto de perfil</span>
-        <input type="text" value={profilePicture} onChange={(e) => setProfilePicture(e.target.value)} />
-      </div>
-      <div>
-        <label>Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      </div>
-      <div>
-        <span>Contraseña</span>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      </div>
-      {error && <p>{error}</p>}
-      <button onClick={handleSignup}>Crear cuenta</button>
-      <div>
-        <span>¿Tienes cuenta?</span>
-        <button onClick={handleToLogin}>Inicia sesión aquí</button>
-      </div>
+      <form>
+        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre" required 
+        />
+        <input value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Apellidos" required 
+        />
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required 
+        />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" required 
+        />
+        <input type="button" value="Crear cuenta" onClick={handleSignup} 
+        />
+        <span className='login-text'>
+          ¿Tienes cuenta? 
+          <a href="#" onClick={handleToLogin}>Inicia sesión aquí</a>
+        </span>
+      </form>
     </div>
   );
 };
 
-export default SignupFormComponent;
+export default SignupPage;

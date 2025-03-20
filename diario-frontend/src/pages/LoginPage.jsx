@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/login-signup.css';
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -20,13 +21,13 @@ const LoginPage = () => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('token_refresh', data.token_refresh);
         localStorage.setItem('idUser', data.idUser);
-        navigate('/home');
+        navigate('/list-escritos');
       } else {
-        setError('Credenciales incorrectas');
+        alert('Credenciales incorrectas');
       }
     } catch (err) {
       console.error('Error durante el login:', err);
-      setError('Hubo un error al intentar iniciar sesión');
+      alert('Hubo un error al intentar iniciar sesión');
     }
   };
 
@@ -35,23 +36,22 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h1>Diario</h1>
-      <h2>Inicia Sesión</h2>
-      <div>
-        <span>Email</span>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+    <div className="login">
+      <div className="header">
+        <h4 className='login-top'>Hola de nuevo.</h4>
       </div>
-      <div>
-        <span>Contraseña</span>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      </div>
-      {error && <p>{error}</p>}
-      <button onClick={handleLogin}>Iniciar sesión</button>
-      <div>
-        <span>¿No tienes cuenta?</span>
-        <button onClick={handleToRegister}>Regístrate aquí</button>
-      </div>
+      <form>
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required 
+        />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" required 
+        />
+        <input type="button" value="Iniciar sesión" onClick={handleLogin} 
+        />
+        <span className='login-text'>
+          ¿No tienes cuenta? 
+          <a href="#" onClick={handleToRegister}>Regístrate aquí</a>
+        </span>
+      </form>
     </div>
   );
 };

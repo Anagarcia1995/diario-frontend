@@ -1,0 +1,76 @@
+/* Contenedor general para el formulario */
+.form-modify-container {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: #706b6b;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espacio entre los elementos del formulario */
+    padding: 20px;
+    margin-top: 40px;
+    background-color: #f9f9f9; /* Fondo suave */
+    border-radius: 8px;
+    border: 1px solid #ccc; /* Borde de contorno */
+    width: 700px;
+    height: 700px; /* Ajuste de altura automática */
+    margin: 0 auto; /* Centrar el formulario */
+}
+
+/* Estilo de los títulos */
+.form-modify-container h2 {
+    font-size: 28px;
+    font-weight: 70px;
+    color: black;
+    margin-bottom: 0px; /* Espacio debajo del título */
+}
+
+/* Contenedor general para el contenido del formulario */
+.form-modify-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Aumento de la separación entre los elementos span y input */
+}
+
+/* Estilo de los campos de formulario */
+.form-modify-content span {
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+/* Estilo de los campos de entrada */
+input[type="text"] {
+    font-size: 17px;
+    padding: 10px;
+    margin-bottom: 0px; /* Separación adicional entre inputs */
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    width: 600px;
+    height: 40px;
+    color: rgba(0, 0, 0, 0.773);
+    background-color: #706b6b35;
+}
+
+/* Estilo de los botones */
+.form-btn-modify {
+    display: flex;
+    gap: 20px;
+}
+
+.form-btn {
+    background-color: #3d2666;
+    color: #ffffff;
+    font-size: 17px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 120px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+button:hover {
+    background-color: #7654af;
+}

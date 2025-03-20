@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import '../styles/user-info.css'; // Importar el estilo para esta página
+import '../styles/edit-user-info.css';
 
 const UserInfoPage = () => {
   const { idUser: idFromParams } = useParams();
@@ -17,16 +19,17 @@ const UserInfoPage = () => {
       navigate('/');
       return;
     }
-
+  
     const fetchUserData = async () => {
       try {
         const response = await fetch(`http://localhost:3000/api/user/${idFromParams}`);
         if (response.ok) {
           const data = await response.json();
+          console.log('Datos del usuario:', data);  // Agrega esto para verificar la respuesta
           setUser(data);
           setName(data.name);
           setLastName(data.lastName);
-          setEmail(data.email);
+          setEmail(data.email);  // Verifica que se esté estableciendo correctamente
           setProfilePicture(data.profilePicture);
         } else {
           navigate('/');
@@ -36,12 +39,17 @@ const UserInfoPage = () => {
         navigate('/');
       }
     };
-
+  
     fetchUserData();
   }, [idFromParams, navigate]);
+  
+  // Verifica en la edición si el email está siendo mostrado
+  if (isEditing) {
+    console.log('Valor de email en edición:', email);
+  }
+  
 
-  const handleEditSubmit = async (e) => {
-    e.preventDefault();
+  const handleEditSubmit = async () => {
     try {
       const response = await fetch(`http://localhost:3000/api/user/${idFromParams}`, {
         method: 'PATCH',
@@ -50,8 +58,9 @@ const UserInfoPage = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        setUser(data);
+        setUser(data); // Actualiza el estado con los datos nuevos
         setIsEditing(false);
+        navigate(`/user-info/${idFromParams}`); // Redirige a la misma página para reflejar los cambios
       } else {
         console.log('Error al actualizar los datos:', data.message);
       }
@@ -78,42 +87,56 @@ const UserInfoPage = () => {
     }
   };
 
+  const goBack = () => {
+    navigate('/list-escritos');
+  };
+
   if (!user) return <p>Cargando...</p>;
 
   return (
-    <div>
-      <button onClick={() => navigate("/list-escritos")}>Volver</button>
+    <div className="user-info-container">
+      <div className='user-info-top'>
       <h2>Información del usuario</h2>
+      <button className="go-back-btn" onClick={goBack}>Volver</button>
+      </div>
 
       {isEditing ? (
-        <form onSubmit={handleEditSubmit}>
-          <div>
-            <label>Nombre:</label>
+        <div className="form-container">
+          <div className="form-group">
+            <span>Nombre:</span>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
           </div>
-          <div>
-            <label>Apellido:</label>
+          <div className="form-group">
+            <span>Apellido:</span>
             <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
           </div>
-          <div>
-            <label>Email:</label>
+          <div className="form-group">
+            <span>Email:</span>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
-          <div>
-            <label>Foto de perfil (opcional):</label>
+          <div className="form-group">
+            <span>Foto de perfil (opcional):</span>
             <input type="text" value={profilePicture} onChange={(e) => setProfilePicture(e.target.value)} />
           </div>
-          <button type="submit">Actualizar información</button>
-          <button type="button" onClick={() => setIsEditing(false)}>Cancelar</button>
-        </form>
+          <div className='act-del-btn-container'>
+          <button className="act-del-btn" onClick={handleEditSubmit}>Actualizar información</button>
+          <button className="act-del-btn" type="button" onClick={() => setIsEditing(false)}>Cancelar</button>
+          </div>
+        </div>
       ) : (
+        <div className="user-details">
+          <p><b>Nombre:</b> {user.name}</p>
+          <p><b>Apellido:</b> {user.lastName}</p>
+          <p><b>Email:</b> {user.email}</p>
+          <p><b>Foto de perfil:</b> {user.profilePicture || 'No hay foto de perfil'}</p>
+        </div>
+      )}
+
+      {/* Mostrar los botones solo cuando no está en modo de edición */}
+      {!isEditing && (
         <div>
-          <p><strong>Nombre:</strong> {user.name}</p>
-          <p><strong>Apellido:</strong> {user.lastName}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Foto de perfil:</strong> {user.profilePicture || 'No hay foto de perfil'}</p>
-          <button onClick={() => setIsEditing(true)}>Editar información</button>
-          <button onClick={handleDeleteAccount}>Eliminar cuenta</button>
+          <button className="edit-delete-btn" onClick={() => setIsEditing(true)}>Editar información</button>
+          <button className="edit-delete-btn" onClick={handleDeleteAccount}>Eliminar cuenta</button>
         </div>
       )}
     </div>

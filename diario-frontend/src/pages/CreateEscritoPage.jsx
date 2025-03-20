@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/create.css';
 
 const CreateEscritoPage = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [fraseDelDia, setFraseDelDia] = useState('');
   const [necesitoUnRespiroDe, setNecesitoUnRespiroDe] = useState('');
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleCreateEscrito = async (e) => {
     e.preventDefault();
     if (!title || !content) {
-      setError("El título y el contenido son obligatorios.");
+      alert("El título y el contenido son obligatorios.");
       return;
     }
 
     const newEscrito = { title, content, fraseDelDia, necesitoUnRespiroDe };
     const token = localStorage.getItem('token');
     if (!token) {
-      setError('No hay token de autenticación');
+      alert('No hay token de autenticación');
       return;
     }
 
@@ -34,46 +34,42 @@ const CreateEscritoPage = () => {
         alert('Escrito creado exitosamente');
         navigate('/list-escritos');
       } else {
-        setError('Hubo un error al crear el escrito');
+        alert('Hubo un error al crear el escrito');
       }
     } catch (error) {
-      setError('Hubo un error en la solicitud. Inténtalo más tarde.');
+      alert('Hubo un error en la solicitud. Inténtalo más tarde.');
     }
   };
 
-  const handleCancel = () => navigate('/home');
+  const handleCancel = () => navigate('/list-escritos');
 
   return (
-    <div>
-      <h1>Diario</h1>
-      <h2>Nueva entrada</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="form-create-container">
+      <h2>¿Cómo te sientes?</h2>
       <form onSubmit={handleCreateEscrito}>
-        <div>
+        <div className="form-content">
           <span>Título:</span>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-        </div>
-        <div>
+  
           <span>Contenido:</span>
-          <textarea value={content} onChange={(e) => setContent(e.target.value)} required />
-        </div>
-        <div>
+          <input type="text" value={content} onChange={(e) => setContent(e.target.value)} required />
+  
           <span>Frase del día:</span>
-          <textarea value={fraseDelDia} onChange={(e) => setFraseDelDia(e.target.value)} />
-        </div>
-        <div>
+          <input type="text" value={fraseDelDia} onChange={(e) => setFraseDelDia(e.target.value)} />
+  
           <span>Necesito un respiro de...</span>
-          <textarea value={necesitoUnRespiroDe} onChange={(e) => setNecesitoUnRespiroDe(e.target.value)} />
+          <input type="text" value={necesitoUnRespiroDe} onChange={(e) => setNecesitoUnRespiroDe(e.target.value)} />
         </div>
-        <div>
-          <button type="submit">Guardar</button>
-        </div>
-        <div>
-          <button type="button" onClick={handleCancel}>Cancelar</button>
+  
+        <div className="form-btns">
+          <button type="submit" className="form-btn">Guardar</button>
+          <button type="button" className="form-btn" onClick={handleCancel}>Cancelar</button>
         </div>
       </form>
     </div>
   );
+  
+  
 };
 
 export default CreateEscritoPage;

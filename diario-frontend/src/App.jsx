@@ -1,6 +1,12 @@
 import React from 'react';
+import './styles/global.css';
+import './styles/header.css';
+import './styles/footer.css';
+
+import HeaderComponent from './components/HeaderComponent';
+import FooterComponent from './components/FooterComponent';
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
 import CreateEscritoPage from './pages/CreateEscritoPage';
 import ListEscritosPage from './pages/ListEscritosPage';
 import ModifyEscritoComponent from './components/ModifyEscritoComponent';
@@ -14,12 +20,38 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/create-escrito" element={<CreateEscritoPage />} />
-        <Route path="/list-escritos" element={<ListEscritosPage />} />
-        <Route path="/modify-escrito/:id" element={<ModifyEscritoComponent />} />
-        <Route path="/user-info/:idUser" element={<UserInfoPage />} />
+
+        <Route
+          path="/create-escrito"element={
+            <>
+              <HeaderComponent /> <CreateEscritoPage />
+            </>
+          }
+        />
+        <Route
+          path="/list-escritos"element={
+            <>
+              <HeaderComponent /> <ListEscritosPage />
+            </>
+          }
+        />
+        <Route
+          path="/modify-escrito/:id"element={
+            <>
+              <HeaderComponent /> <ModifyEscritoComponent />
+            </>
+          }
+        />
+        <Route
+          path="/user-info/:idUser" element={
+            <>
+              <HeaderComponent /> <UserInfoPage />
+            </>
+          }
+        />
       </Routes>
+
+      <FooterComponent />
     </Router>
   );
 }

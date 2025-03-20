@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/list-escritos.css';
+
+
 
 const ListEscritosPage = () => {
   const [escritos, setEscritos] = useState([]);
@@ -41,9 +44,7 @@ const ListEscritosPage = () => {
     navigate(`/modify-escrito/${id}`);
   };
 
-  const handleVolver = () => {
-    navigate('/home');
-  };
+
 
   const formatDate = (date) => {
     const options = { weekday: 'long', day: 'numeric', month: 'long' };
@@ -54,30 +55,32 @@ const ListEscritosPage = () => {
 
   return (
     <div>
-      <h1>Diario</h1>
-      <button onClick={handleVolver}>Volver</button>
       {loading ? (
-        <p>Cargando...</p>
+        <p className="loading-text">Cargando...</p>
       ) : (
-        <div>
+        <div className="form-list">
           {sortedEscritos.map((escrito) => (
-            <div key={escrito._id}>
-              <h2>{escrito.title}</h2>
-              <h4>{formatDate(escrito.createdAt)}</h4>
-              <ul>
+            <div key={escrito._id} className="form-item"> {/* Cada escrito tiene su propio contenedor */}
+              <h2 className="h2list">{escrito.title}</h2>
+              <h4 className="h4list">{formatDate(escrito.createdAt)}</h4>
+              <ul className="ullist">
                 <li>{escrito.content}</li>
-                {escrito.fraseDelDia && <li>Frase del día: {escrito.fraseDelDia}</li>}
-                {escrito.necesitoUnRespiroDe && <li>Necesito un respiro de: {escrito.necesitoUnRespiroDe}</li>}
+                {escrito.fraseDelDia && 
+                <li>Frase del día: {escrito.fraseDelDia}</li>}
+                {escrito.necesitoUnRespiroDe && 
+                <li>Necesito un respiro de: {escrito.necesitoUnRespiroDe}</li>}
               </ul>
-              <button onClick={() => handleDeleteEscrito(escrito._id)}>Eliminar</button>
-              <button onClick={() => handleEditEscrito(escrito._id)}>Editar</button>
-              <hr />
+              <div className="form-btns">
+                <button className="form-btn" onClick={() => handleDeleteEscrito(escrito._id)}>Eliminar</button>
+                <button className="form-btn" onClick={() => handleEditEscrito(escrito._id)}>Editar</button>
+              </div>
             </div>
           ))}
         </div>
       )}
     </div>
   );
+  
 };
 
 export default ListEscritosPage;

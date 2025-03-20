@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import '../styles/modify.css';
 
 const ModifyEscrito = () => {
   const [title, setTitle] = useState('');
@@ -26,8 +27,7 @@ const ModifyEscrito = () => {
     fetchEscrito();
   }, [id]);
 
-  const handleActualizar = async (e) => {
-    e.preventDefault();
+  const handleActualizar = async () => {
     const updatedEscrito = { title, content, fraseDelDia, necesitoUnRespiroDe };
 
     try {
@@ -49,31 +49,31 @@ const ModifyEscrito = () => {
   };
 
   return (
-    <div>
+    <div className='form-modify-container'>
       <h2>Editar Escrito</h2>
-      <form onSubmit={handleActualizar}>
-        <div>
-          <label>Título:</label>
+      < div>
+      <div className="form-modify-content">
+          <span className="form-modify-item">Título:</span>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+
+
+          <span className="form-modify-item">Contenido:</span>
+          <input type="text" value={content} onChange={(e) => setContent(e.target.value)} required />
+
+
+          <span className="form-modify-item">Frase del día:</span>
+          <input type="text" value={fraseDelDia} onChange={(e) => setFraseDelDia(e.target.value)} />
+
+          <span className="form-modify-item">Necesito un respiro de:</span>
+          <input type="text" value={necesitoUnRespiroDe} onChange={(e) => setNecesitoUnRespiroDe(e.target.value)}/>
+        
         </div>
-        <div>
-          <label>Contenido:</label>
-          <textarea value={content} onChange={(e) => setContent(e.target.value)} required />
+        <div className='form-btn-modify'>
+          <button className="form-btn" onClick={handleActualizar}>Actualizar</button>
+          <button className="form-btn" onClick={() => navigate('/list-escritos')}>Cancelar</button>
         </div>
-        <div>
-          <label>Frase del día:</label>
-          <textarea value={fraseDelDia} onChange={(e) => setFraseDelDia(e.target.value)} />
-        </div>
-        <div>
-          <label>Necesito un respiro de:</label>
-          <textarea value={necesitoUnRespiroDe} onChange={(e) => setNecesitoUnRespiroDe(e.target.value)} />
-        </div>
-        <div>
-          <button type="submit">Actualizar</button>
-        </div>
-      </form>
-      <button onClick={() => navigate('/list-escritos')}>Cancelar</button>
-    </div>
+      </div>
+</div>
   );
 };
 
