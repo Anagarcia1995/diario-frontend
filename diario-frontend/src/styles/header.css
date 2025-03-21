@@ -1,10 +1,9 @@
-/* Estilos globales para el header */
 header {
-  width: 100%; /* Ocupa todo el ancho de la pantalla */
-  background-color: #ffffff; /* Fondo blanco */
-  padding: 1em 2em; /* Espaciado en todo el header */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  position: fixed; /* Fija el header en la parte superior */
+  width: 100%; 
+  background-color: #ffffff; 
+  padding: 1em 2em; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+  position: fixed; 
   top: 0;
   left: 0;
   z-index: 1000;
@@ -13,41 +12,40 @@ header {
 .top-bar {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Centra verticalmente */
-  width: 100%; /* Ocupa todo el ancho disponible */
+  align-items: center;
+  width: 100%;
   margin: 10px;
   
 }
 
 .top-bar h1 {
   margin: 0;
-  font-style: italic; /* Poner el texto en cursiva */
-  font-size: 44px; /* Tamaño de fuente del título */
-  font-weight: 350; /* Peso de la fuente */
-  color: #3d2666; /* Color del título */
-  font-family: 'Roboto', sans-serif; /* Mismo tipo de fuente */
+  font-style: italic; 
+  font-size: 44px;
+  font-weight: 350; 
+  color: #3d2666; 
+  font-family: 'Roboto', sans-serif; 
 }
 
 .top-bar button {
-  background-color: #3d2666; /* Color del fondo del botón */
-  color: white;
+  background-color: #3d2666; 
   border: none;
   padding: 0.5em 1.5em;
   margin-right: 80px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s ease; /* Transición suave para el hover */
+  transition: background-color 0.3s ease; 
 }
 
 .top-bar button:hover {
-  background-color: #7654af; /* Cambia el color al hacer hover */
+  background-color: #7654af; 
 }
 
 nav {
   display: flex;
   justify-content: space-around;
-  background-color: #3d2666; /* Fondo del nav */
+  background-color: #3d2666; 
   padding:12px;
   position: fixed;
   top: 80px; 
@@ -59,9 +57,9 @@ nav {
 nav ul {
   display: flex;
   gap: 280px;
-  margin: 0; /* Eliminar el margen por defecto */
+  margin: 0; 
   padding: 10; 
-  list-style-type: none; /* Esto elimina los puntos */
+  list-style-type: none; 
 }
 
 nav a {
@@ -73,11 +71,11 @@ nav a {
 }
 
 nav a:hover {
-  color:#8e66d1; /* Color al hacer hover en los enlaces */
+  color:#8e66d1; 
 }
 
 body {
-  padding-top: 120px; /* Para dar espacio entre el contenido y el header/nav */
+  padding-top: 120px; 
 }
 
 .login, .signup {
@@ -90,6 +88,6 @@ body {
 }
 
 nav li {
-  display: inline; /* Esto hará que los elementos de la lista se alineen horizontalmente */
-  margin-right: 20px; /* Puedes ajustar el espacio entre los elementos de la lista */
+  display: inline;
+  margin-right: 20px; 
 }

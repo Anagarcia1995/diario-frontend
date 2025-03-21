@@ -1,8 +1,7 @@
-/* Estilos específicos para los botones de editar y eliminar */
 .act-del-btn-container {
     display: flex;
-    gap: 20px; /* Espacio entre los botones */
-    justify-content: center; /* Alinea los botones al centro */
+    gap: 20px; 
+    justify-content: center;
   }
   
   .act-del-btn {
@@ -12,7 +11,7 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    width: 300px; /* Ajusta el tamaño de los botones si es necesario */
+    width: 300px; 
   }
   
   .act-del-btn:hover {

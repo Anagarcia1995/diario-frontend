@@ -10,7 +10,6 @@ const Header = () => {
     navigate('/');
   }
 
-  // Obtener el idUser del localStorage
   const idUser = localStorage.getItem('idUser');
 
   return (

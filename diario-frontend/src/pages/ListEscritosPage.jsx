@@ -60,7 +60,7 @@ const ListEscritosPage = () => {
       ) : (
         <div className="form-list">
           {sortedEscritos.map((escrito) => (
-            <div key={escrito._id} className="form-item"> {/* Cada escrito tiene su propio contenedor */}
+            <div key={escrito._id} className="form-item"> 
               <h2 className="h2list">{escrito.title}</h2>
               <h4 className="h4list">{formatDate(escrito.createdAt)}</h4>
               <ul className="ullist">

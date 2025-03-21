@@ -11,6 +11,7 @@ const UserInfoPage = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
+  const [profilePictureFile, setProfilePictureFile] = useState(null); // Para manejar el archivo de imagen
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,11 +26,11 @@ const UserInfoPage = () => {
         const response = await fetch(`http://localhost:3000/api/user/${idFromParams}`);
         if (response.ok) {
           const data = await response.json();
-          console.log('Datos del usuario:', data);  // Agrega esto para verificar la respuesta
+          console.log('Datos del usuario:', data); 
           setUser(data);
           setName(data.name);
           setLastName(data.lastName);
-          setEmail(data.email);  // Verifica que se esté estableciendo correctamente
+          setEmail(data.email); 
           setProfilePicture(data.profilePicture);
         } else {
           navigate('/');
@@ -43,26 +44,36 @@ const UserInfoPage = () => {
     fetchUserData();
   }, [idFromParams, navigate]);
   
-  // Verifica en la edición si el email está siendo mostrado
   if (isEditing) {
     console.log('Valor de email en edición:', email);
   }
-  
 
-  const handleEditSubmit = async () => {
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+  
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('lastName', lastName);
+    formData.append('email', email);
+  
+    if (profilePictureFile) {
+      formData.append('profilePicture', profilePictureFile);
+    }
+  
     try {
       const response = await fetch(`http://localhost:3000/api/user/${idFromParams}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, lastName, email, profilePicture }),
+        body: formData,
       });
-      const data = await response.json();
-      if (response.ok) {
-        setUser(data); // Actualiza el estado con los datos nuevos
-        setIsEditing(false);
-        navigate(`/user-info/${idFromParams}`); // Redirige a la misma página para reflejar los cambios
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.log('Error al actualizar los datos:', errorData); 
       } else {
-        console.log('Error al actualizar los datos:', data.message);
+        const data = await response.json();
+        setUser(data);
+        setIsEditing(false);
+        navigate(`/user-info/${idFromParams}`);
       }
     } catch (error) {
       console.error('Error al editar la información del usuario:', error);
@@ -91,13 +102,18 @@ const UserInfoPage = () => {
     navigate('/list-escritos');
   };
 
+  const handleFileChange = (e) => {
+    setProfilePictureFile(e.target.files[0]);
+    setProfilePicture(URL.createObjectURL(e.target.files[0])); 
+  };
+
   if (!user) return <p>Cargando...</p>;
 
   return (
     <div className="user-info-container">
       <div className='user-info-top'>
-      <h2>Información del usuario</h2>
-      <button className="go-back-btn" onClick={goBack}>Volver</button>
+        <h2>Información del usuario</h2>
+        <button className="go-back-btn" onClick={goBack}>Volver</button>
       </div>
 
       {isEditing ? (
@@ -116,11 +132,30 @@ const UserInfoPage = () => {
           </div>
           <div className="form-group">
             <span>Foto de perfil (opcional):</span>
-            <input type="text" value={profilePicture} onChange={(e) => setProfilePicture(e.target.value)} />
+            <input 
+              type="file" 
+              onChange={handleFileChange} 
+              accept="image/*"
+            />
+            
+            {profilePicture && !profilePictureFile && (
+              <img 
+                src={`http://localhost:3000/${profilePicture}`} 
+                alt="Vista previa de foto de perfil" 
+                className="preview-img"
+              />
+            )}
+            {profilePictureFile && (
+              <img 
+                src={URL.createObjectURL(profilePictureFile)} 
+                alt="Vista previa de foto de perfil seleccionada" 
+                className="preview-img"
+              />
+            )}
           </div>
           <div className='act-del-btn-container'>
-          <button className="act-del-btn" onClick={handleEditSubmit}>Actualizar información</button>
-          <button className="act-del-btn" type="button" onClick={() => setIsEditing(false)}>Cancelar</button>
+            <button className="act-del-btn" onClick={handleEditSubmit}>Actualizar información</button>
+            <button className="act-del-btn" type="button" onClick={() => setIsEditing(false)}>Cancelar</button>
           </div>
         </div>
       ) : (
@@ -128,11 +163,18 @@ const UserInfoPage = () => {
           <p><b>Nombre:</b> {user.name}</p>
           <p><b>Apellido:</b> {user.lastName}</p>
           <p><b>Email:</b> {user.email}</p>
-          <p><b>Foto de perfil:</b> {user.profilePicture || 'No hay foto de perfil'}</p>
+          <p><b>Foto de perfil:</b> 
+            {user.profilePicture ? (
+              <img 
+                src={`http://localhost:3000/${user.profilePicture}`} 
+                alt="Foto de perfil" 
+                className="profile-img"
+              />
+            ) : 'No hay foto de perfil'}
+          </p>
         </div>
       )}
 
-      {/* Mostrar los botones solo cuando no está en modo de edición */}
       {!isEditing && (
         <div>
           <button className="edit-delete-btn" onClick={() => setIsEditing(true)}>Editar información</button>

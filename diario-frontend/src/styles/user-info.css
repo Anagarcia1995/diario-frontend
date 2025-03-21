@@ -13,17 +13,15 @@
     border-radius: 8px;
     border: 1px solid #ccc;
     width: 700px;
-    height: 700px;
+    height: 730px;
     margin: 0 auto;
   }
   
-  /* Estilo para el título de la página */
   .user-info-container h2 {
     font-size: 28px;
     color: black;
   }
   
-  /* Estilos para las secciones de detalles de usuario */
   .user-details p {
     margin-bottom: 10px;
     font-size: 18px;
@@ -38,7 +36,6 @@
     gap: 20px;
   }
   
-  /* Estilos para los botones */
   .go-back-btn, .edit-btn, .delete-btn, .submit-btn, .cancel-btn {
     background-color: #3d2666;
     color: white;
@@ -58,7 +55,6 @@
 
   }
   
-  /* Estilos para el formulario de edición */
   .form-container {
     display: flex;
     flex-direction: column;
@@ -84,7 +80,6 @@
     background-color: #f9f9f9;
   }
   
-  /* Estilos específicos para los botones de editar y eliminar */
   .edit-delete-btn {
     background-color: #3d2666;
     color: white;
@@ -97,4 +92,11 @@
   }
   
 
+  
+  img {
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover;
+    border-radius: 50%; 
+  }
   

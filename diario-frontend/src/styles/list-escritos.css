@@ -29,16 +29,16 @@
     color: #555;
     margin-bottom: 15px;
     margin-left: 3px;
-    font-style: italic; /* Poner el texto en cursiva */
+    font-style: italic;
   
   }
   
   .form-item {
-    background-color: #ffffff; /* Fondo blanco para cada ítem */
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #ccc; /* Borde alrededor de cada escrito */
-    margin-bottom: 20px; /* Espaciado entre cada contenedor de escrito */
+    border: 1px solid #ccc; 
+    margin-bottom: 20px; 
   }
   
   .ullist {
