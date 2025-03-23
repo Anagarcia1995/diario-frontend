@@ -1,12 +1,39 @@
-# React + Vite
+React: para construir la interfaz de usuario.
+React Router: para la navegacion entre las distintas paginas de la aplicacion.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Ana Garcia Hidalgo
+Frontend: Versión 1.0.0
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+Paginas de Autenticacion:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+LoginPage => verifica la informacion del usuario y si es asi se guarda el token en el localStorage redirigiendo a la vista principal
+
+SignupPage => si el registro es exitoso, se guarda el token y se redirige a la vista principal
+
+-----------------------------------------------------------------------
+
+CreateEscritoPage => 
+Permite crear un escrito usando un POST
+Verifica que los campos requeridos esten completos 
+
+
+ListEscritosPage => 
+Muestra todos los escritos
+Ordenados por fecha de creacion(el reciente primero)
+Añadimos la fecha de creacion 
+Desde aqui podemos Editar y Eliminar
+
+
+ModifyEscritoComponent =>
+Edita la informacion del escrito con el PATCH
+
+
+UserInfoPage =>
+Muestra la informacion del usuario
+Desde aqui podemos Editar informacion del usuario y Eliminar cuenta
+
+
+EscritosContext =>
+Gestiona el estado global relacionado con los escritos

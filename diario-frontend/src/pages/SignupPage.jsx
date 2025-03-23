@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/global.css'; 
+
+
 const SignupPage = () => {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [profilePicture, setProfilePicture] = useState('');
+
   const navigate = useNavigate();
 
   const handleSignup = async () => {
@@ -42,18 +45,12 @@ const SignupPage = () => {
         <h4 className='login-top'>Bienvenido.</h4>
       </div>
       <form>
-        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre" required 
-        />
-        <input value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Apellidos" required 
-        />
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required 
-        />
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" required 
-        />
-        <input type="button" value="Crear cuenta" onClick={handleSignup} 
-        />
-        <span className='login-text'>
-          ¿Tienes cuenta? 
+        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre" required />
+        <input value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Apellidos" required />
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" required />
+        <input type="button" value="Crear cuenta" onClick={handleSignup} />
+        <span className='login-text'>¿Tienes cuenta? 
           <a href="#" onClick={handleToLogin}>Inicia sesión aquí</a>
         </span>
       </form>
@@ -62,3 +59,5 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
+
+

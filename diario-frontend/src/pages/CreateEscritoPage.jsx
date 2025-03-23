@@ -9,8 +9,7 @@ const CreateEscritoPage = () => {
   const [necesitoUnRespiroDe, setNecesitoUnRespiroDe] = useState('');
   const navigate = useNavigate();
 
-  const handleCreateEscrito = async (e) => {
-    e.preventDefault();
+  const handleCreateEscrito = async () => {
     if (!title || !content) {
       alert("El título y el contenido son obligatorios.");
       return;
@@ -46,30 +45,26 @@ const CreateEscritoPage = () => {
   return (
     <div className="form-create-container">
       <h2>¿Cómo te sientes?</h2>
-      <form onSubmit={handleCreateEscrito}>
-        <div className="form-content">
-          <span>Título:</span>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-  
-          <span>Contenido:</span>
-          <input type="text" value={content} onChange={(e) => setContent(e.target.value)} required />
-  
-          <span>Frase del día:</span>
-          <input type="text" value={fraseDelDia} onChange={(e) => setFraseDelDia(e.target.value)} />
-  
-          <span>Necesito un respiro de...</span>
-          <input type="text" value={necesitoUnRespiroDe} onChange={(e) => setNecesitoUnRespiroDe(e.target.value)} />
-        </div>
-  
-        <div className="form-btns">
-          <button type="submit" className="form-btn">Guardar</button>
-          <button type="button" className="form-btn" onClick={handleCancel}>Cancelar</button>
-        </div>
-      </form>
+      <div className="form-content">
+        <span>Título:</span>
+        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+
+        <span>Contenido:</span>
+        <input type="text" value={content} onChange={(e) => setContent(e.target.value)} required />
+
+        <span>Frase del día:</span>
+        <input type="text" value={fraseDelDia} onChange={(e) => setFraseDelDia(e.target.value)} />
+
+        <span>Necesito un respiro de...</span>
+        <input type="text" value={necesitoUnRespiroDe} onChange={(e) => setNecesitoUnRespiroDe(e.target.value)} />
+      </div>
+
+      <div className="form-btns">
+        <button type="button" className="form-btn" onClick={handleCreateEscrito}>Guardar</button>
+        <button type="button" className="form-btn" onClick={handleCancel}>Cancelar</button>
+      </div>
     </div>
   );
-  
-  
 };
 
 export default CreateEscritoPage;

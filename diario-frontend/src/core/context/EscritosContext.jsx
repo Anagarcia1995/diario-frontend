@@ -3,15 +3,19 @@ import React, { createContext, useState, useEffect } from 'react';
 export const EscritosContext = createContext();
 
 export const EscritosProvider = ({ children }) => {
+
   const [escritos, setEscritos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchEscritos = async () => {
     try {
+      
       const response = await fetch('http://localhost:3000/api/escritos');
       const data = await response.json();
+
       setEscritos(data);
       setLoading(false);
+
     } catch (error) {
       console.error("Error al obtener los escritos: ", error);
     }
@@ -27,3 +31,8 @@ export const EscritosProvider = ({ children }) => {
     </EscritosContext.Provider>
   );
 };
+
+
+// EscritosProvider: componente que encapsula otros componentes y les da acceso al contexto que hemos creado
+
+ 

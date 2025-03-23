@@ -5,8 +5,10 @@ import '../styles/list-escritos.css';
 
 
 const ListEscritosPage = () => {
+
   const [escritos, setEscritos] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingEscritos, setLoadingEscritos] = useState(true);
+
   const navigate = useNavigate();
 
   const fetchEscritos = async () => {
@@ -14,7 +16,7 @@ const ListEscritosPage = () => {
       const response = await fetch('http://localhost:3000/api/escritos');
       const data = await response.json();
       setEscritos(data);
-      setLoading(false);
+      setLoadingEscritos(false);
     } catch (error) {
       console.error('Error al obtener los escritos:', error);
     }
@@ -55,7 +57,7 @@ const ListEscritosPage = () => {
 
   return (
     <div>
-      {loading ? (
+      {loadingEscritos ? (
         <p className="loading-text">Cargando...</p>
       ) : (
         <div className="form-list">

@@ -14,10 +14,12 @@ const ModifyEscrito = () => {
     try {
       const response = await fetch(`http://localhost:3000/api/escritos/${id}`);
       const data = await response.json();
+
       setTitle(data.title);
       setContent(data.content);
       setFraseDelDia(data.fraseDelDia || '');
       setNecesitoUnRespiroDe(data.necesitoUnRespiroDe || '');
+      
     } catch (error) {
       console.error('Error al obtener el escrito:', error);
     }
@@ -48,32 +50,35 @@ const ModifyEscrito = () => {
     }
   };
 
+  // Nueva función handleCancelar
+  const handleCancelar = () => {
+    navigate('/list-escritos');
+  };
+
   return (
     <div className='form-modify-container'>
       <h2>Editar Escrito</h2>
-      < div>
-      <div className="form-modify-content">
+      <div>
+        <div className="form-modify-content">
           <span className="form-modify-item">Título:</span>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
 
-
           <span className="form-modify-item">Contenido:</span>
           <input type="text" value={content} onChange={(e) => setContent(e.target.value)} required />
-
 
           <span className="form-modify-item">Frase del día:</span>
           <input type="text" value={fraseDelDia} onChange={(e) => setFraseDelDia(e.target.value)} />
 
           <span className="form-modify-item">Necesito un respiro de:</span>
-          <input type="text" value={necesitoUnRespiroDe} onChange={(e) => setNecesitoUnRespiroDe(e.target.value)}/>
-        
+          <input type="text" value={necesitoUnRespiroDe} onChange={(e) => setNecesitoUnRespiroDe(e.target.value)} />
         </div>
+
         <div className='form-btn-modify'>
           <button className="form-btn" onClick={handleActualizar}>Actualizar</button>
-          <button className="form-btn" onClick={() => navigate('/list-escritos')}>Cancelar</button>
+          <button className="form-btn" onClick={handleCancelar}>Cancelar</button> {/* Usamos la nueva función */}
         </div>
       </div>
-</div>
+    </div>
   );
 };
 
