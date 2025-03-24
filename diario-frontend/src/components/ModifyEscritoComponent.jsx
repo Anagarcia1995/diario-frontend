@@ -74,7 +74,7 @@ const ModifyEscrito = () => {
 
         <div className='form-btn-modify'>
           <button className="form-btn" onClick={handleActualizar}>Actualizar</button>
-          <button className="form-btn" onClick={handleCancelar}>Cancelar</button> {/* Usamos la nueva función */}
+          <button className="form-btn" onClick={handleCancelar}>Cancelar</button> 
         </div>
       </div>
     </div>

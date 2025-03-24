@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import '../styles/user-info.css'; // Importar el estilo para esta página
+import '../styles/user-info.css'; 
 import '../styles/edit-user-info.css';
 
 const UserInfoPage = () => {
@@ -11,7 +11,7 @@ const UserInfoPage = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
-  const [profilePictureFile, setProfilePictureFile] = useState(null); // Para manejar el archivo de imagen
+  const [profilePictureFile, setProfilePictureFile] = useState(null); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -138,25 +138,13 @@ const UserInfoPage = () => {
           </div>
           <div className="form-group">
             <span>Foto de perfil (opcional):</span>
-            <input 
-              type="file" 
-              onChange={handleFileChange} 
-              accept="image/*"
-            />
+            <input type="file" onChange={handleFileChange} accept="image/*"/>
             
             {profilePicture && !profilePictureFile && (
-              <img 
-                src={`http://localhost:3000/${profilePicture}`} 
-                alt="Vista previa de foto de perfil" 
-                className="preview-img"
-              />
+              <img src={`http://localhost:3000/${profilePicture}`} alt="Vista previa de foto de perfil" className="preview-img"/>
             )}
             {profilePictureFile && (
-              <img 
-                src={URL.createObjectURL(profilePictureFile)} 
-                alt="Vista previa de foto de perfil seleccionada" 
-                className="preview-img"
-              />
+              <img src={URL.createObjectURL(profilePictureFile)} alt="Vista previa de foto de perfil seleccionada" className="preview-img"/>
             )}
           </div>
           <div className='act-del-btn-container'>
