@@ -1,3 +1,7 @@
+cuenta para iniciar sesion en el Diario:
+ana@ana.com
+
+
 React: para construir la interfaz de usuario.
 React Router: para la navegacion entre las distintas paginas de la aplicacion.
 
