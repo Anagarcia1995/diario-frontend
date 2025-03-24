@@ -50,33 +50,36 @@ const UserInfoPage = () => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-  
+
     const formData = new FormData();
     formData.append('name', name);
     formData.append('lastName', lastName);
     formData.append('email', email);
-  
+
     if (profilePictureFile) {
       formData.append('profilePicture', profilePictureFile);
     }
-  
+
     try {
       const response = await fetch(`http://localhost:3000/api/user/${idFromParams}`, {
         method: 'PATCH',
         body: formData,
       });
-  
+
       if (!response.ok) {
         const errorData = await response.json();
-        console.log('Error al actualizar los datos:', errorData); 
+        console.log('Error al actualizar los datos:', errorData);
+        alert('No se pudo actualizar la información del usuario. Intenta de nuevo.');
       } else {
         const data = await response.json();
         setUser(data);
         setIsEditing(false);
+        alert('¡La información del usuario se actualizó correctamente!');
         navigate(`/user-info/${idFromParams}`);
       }
     } catch (error) {
       console.error('Error al editar la información del usuario:', error);
+      alert('Ocurrió un error al intentar actualizar la información del usuario. Intenta de nuevo.');
     }
   };
 
@@ -89,12 +92,15 @@ const UserInfoPage = () => {
 
       if (response.ok) {
         localStorage.removeItem('idUser');
+        alert('¡Tu cuenta ha sido eliminada exitosamente!');
         navigate('/');
       } else {
         console.log('Error al eliminar la cuenta');
+        alert('No se pudo eliminar la cuenta. Intenta de nuevo.');
       }
     } catch (error) {
       console.error('Error al eliminar la cuenta:', error);
+      alert('Ocurrió un error al intentar eliminar tu cuenta. Intenta de nuevo.');
     }
   };
 

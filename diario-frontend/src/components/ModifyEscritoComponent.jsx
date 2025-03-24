@@ -50,7 +50,6 @@ const ModifyEscrito = () => {
     }
   };
 
-  // Nueva función handleCancelar
   const handleCancelar = () => {
     navigate('/list-escritos');
   };
